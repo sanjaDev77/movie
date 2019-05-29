@@ -4,13 +4,30 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<br/>
 @if (Model.Movies.Count > 0)
 {
-    foreach (var movie in Model.Movies)
+
+
+    <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movies</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var movie in Model.Movies)
     {
-        <h2>@movie.Name</h2>
+        <tr>
+            <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+            <td>@movie.Genre.Name</td>
+
+        </tr>
     }
+    </tbody>
+    </table>
 }
 else
 {
