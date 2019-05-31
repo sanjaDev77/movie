@@ -174,6 +174,22 @@
     <Compile Include="Migrations\201905281607501_AddPropertiesToMoviesAndAddGenre.Designer.cs">
       <DependentUpon>201905281607501_AddPropertiesToMoviesAndAddGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905311139267_AddRequiredToMovieFields.cs" />
+    <Compile Include="Migrations\201905311139267_AddRequiredToMovieFields.Designer.cs">
+      <DependentUpon>201905311139267_AddRequiredToMovieFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311152173_MigrationFieldToMovie.cs" />
+    <Compile Include="Migrations\201905311152173_MigrationFieldToMovie.Designer.cs">
+      <DependentUpon>201905311152173_MigrationFieldToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311255111_DeleteGFromMovie.cs" />
+    <Compile Include="Migrations\201905311255111_DeleteGFromMovie.Designer.cs">
+      <DependentUpon>201905311255111_DeleteGFromMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311257318_AddGenreToMovie.cs" />
+    <Compile Include="Migrations\201905311257318_AddGenreToMovie.Designer.cs">
+      <DependentUpon>201905311257318_AddGenreToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -182,6 +198,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
@@ -229,6 +246,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +291,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905281607501_AddPropertiesToMoviesAndAddGenre.resx">
       <DependentUpon>201905281607501_AddPropertiesToMoviesAndAddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311139267_AddRequiredToMovieFields.resx">
+      <DependentUpon>201905311139267_AddRequiredToMovieFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311152173_MigrationFieldToMovie.resx">
+      <DependentUpon>201905311152173_MigrationFieldToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311255111_DeleteGFromMovie.resx">
+      <DependentUpon>201905311255111_DeleteGFromMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311257318_AddGenreToMovie.resx">
+      <DependentUpon>201905311257318_AddGenreToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

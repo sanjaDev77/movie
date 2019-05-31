@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,8 @@ namespace vidly.Controllers
 {
     public class MoviesController : Controller
     {
+
+
         private ApplicationDbContext _context;
         private List<Movie> movies;
         public MoviesController()
@@ -27,7 +30,83 @@ namespace vidly.Controllers
         }
 
 
- 
+
+        public ActionResult New()
+        {
+
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new MovieFormViewModel()
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var viewModel = new MovieFormViewModel()
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+        }
+    
+
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+
+            else
+            {
+                try
+                {
+                    var moiveInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                    moiveInDb.Name = movie.Name;
+                    moiveInDb.ReleaseDate = movie.ReleaseDate;
+                    moiveInDb.DateAdded = movie.DateAdded;
+                    //moiveInDb.Genre = _context.Genres.Single(g => g.Id == movie.GenreId);
+                    moiveInDb.GenreId = movie.GenreId;
+                    moiveInDb.NumberInStock = movie.NumberInStock;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            
+
+            return RedirectToAction("Index", "Movies");
+        }
+
 
         // GET: Movies/Random
         public ActionResult Random()
@@ -55,10 +134,10 @@ namespace vidly.Controllers
             //return RedirectToAction("Index", "Home", new {page=1, sortBy="name"});
         }
 
-        public ActionResult Edit(int id)
-        {
-            return Content("id=" + id);
-        }
+       // public ActionResult Edit(int id)
+        //{
+          //  return Content("id=" + id);
+        //}
 
         //movies
 
