@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -23,9 +24,12 @@ namespace vidly.Controllers.Api
 
 
         //  GET/api/customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            var customerDtos = _context.Customers.Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+            return Ok(customerDtos);
         }
 
 
@@ -39,7 +43,8 @@ namespace vidly.Controllers.Api
             }
             else
             {
-                return Ok(Mapper.Map<Customer,CustomerDto>(customer));
+                var customerDto = Mapper.Map<Customer, CustomerDto>(customer);
+                return Ok(customerDto);
             }
         }
 

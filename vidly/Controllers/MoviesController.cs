@@ -173,12 +173,7 @@ namespace vidly.Controllers
         public ActionResult Index()
         {
 
-            
-            var movieViewModel = new MovieListViewModel()
-            {
-                Movies = movies
-            };
-            return View(movieViewModel);
+            return View();
         }
 
 
